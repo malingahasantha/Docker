@@ -2,7 +2,7 @@
 
 ## Traditional Build Promotion Problems
 
-![traditional build promotion](01_Docker_Fundamentals/img/01.png)
+![traditional build promotion](../01_Docker_Fundamentals/img/1.png)
 
 In conventional software development workflows, organizations typically maintain three distinct environments:
 
@@ -38,7 +38,7 @@ Without a way to bundle these elements into a single, portable unit that could b
 
 ## How Docker Transforms the Deployment Process
 
-![docker build promotion way](01_Docker_Fundamentals/img/02.png)
+![docker build promotion way](../01_Docker_Fundamentals/img/2.png)
 
 With containerization, the same build promotion workflow becomes dramatically more reliable:
 
@@ -80,7 +80,7 @@ However, these remaining issues are infrastructure-related rather than applicati
 
 ## What Exactly Are Containers?
 
-![docker isolated environment](01_Docker_Fundamentals/img/03.png)
+![docker isolated environment](../01_Docker_Fundamentals/img/3.png)
 
 Containers provide an isolated environment that includes everything an application needs to run:
 
@@ -124,7 +124,7 @@ Docker provides the tools and infrastructure to:
 
 ## Containers vs Virtual Machines
 
-![containers vs virtual machines](01_Docker_Fundamentals/img/04.png)
+![containers vs virtual machines](../01_Docker_Fundamentals/img/4.png)
 
 To better understand the fundamental differences between containers and virtual machines, consider this real-world analogy.
 

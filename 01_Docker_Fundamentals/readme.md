@@ -161,7 +161,7 @@ To better understand the fundamental differences between containers and virtual 
 
 ## Container vs Hypervisor Functionality
 
-![containers vs hypervisor](..img/05.png)
+![containers vs hypervisor](../01_Docker_Fundamentals/img/5.png)
 
 | Hypervisor Function | Container Engine Function |
 |---------------------|---------------------------|

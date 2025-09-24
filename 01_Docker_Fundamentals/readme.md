@@ -2,13 +2,13 @@
 
 ## Traditional Build Promotion Problems
 
-![traditional build promotion](img/01.png)
+![traditional build promotion](01_Docker_Fundamentals/img/01.png)
 
 In conventional software development workflows, organizations typically maintain three distinct environments:
 
-* ** Development Environment ** - Where developers write and initially test code
-* ** Test Environment ** - Where comprehensive testing occurs before production
-* ** Production Environment ** - The live environment serving end users
+* **Development Environment** - Where developers write and initially test code
+* **Test Environment** - Where comprehensive testing occurs before production
+* **Production Environment** - The live environment serving end users
 
 To the Development-to-Production Journey the standard process follows below steps:
 
@@ -38,13 +38,13 @@ Without a way to bundle these elements into a single, portable unit that could b
 
 ## How Docker Transforms the Deployment Process
 
-![docker build promotion way](img/02.png)
+![docker build promotion way](01_Docker_Fundamentals/img/02.png)
 
 With containerization, the same build promotion workflow becomes dramatically more reliable:
 
-* ** Development Environment ** - Application works fine, packaged in a container
-* ** Test Environment ** - Same container works fine with identical behavior
-* ** Production Environment ** - Container deployment succeeds consistently
+* **Development Environment** - Application works fine, packaged in a container
+* **Test Environment** - Same container works fine with identical behavior
+* **Production Environment** - Container deployment succeeds consistently
 
 When using containers, you're not just shipping application code. Instead, you're packaging and deploying:
 
@@ -80,7 +80,7 @@ However, these remaining issues are infrastructure-related rather than applicati
 
 ## What Exactly Are Containers?
 
-![docker isolated environment](img/03.png)
+![docker isolated environment](01_Docker_Fundamentals/img/03.png)
 
 Containers provide an isolated environment that includes everything an application needs to run:
 
@@ -103,17 +103,17 @@ Containers are often called "lightweight sandbox environments" because:
 ## The Three-Step Process
 Container management follows a simple, systematic approach:
 
-* ** BUILD ** - Create the container image with application and dependencies
-* ** SHIP ** - Distribute the container image across environments
-* ** RUN ** - Execute the container in any target environment
+* **BUILD** - Create the container image with application and dependencies
+* **SHIP** - Distribute the container image across environments
+* **RUN** - Execute the container in any target environment
 
 This process ensures consistency and repeatability across all deployment stages.
 
 ## Docker vs. Containers: Clearing the Confusion
 
 Many people confuse containers with Docker, but they serve different roles:
-    * ** Containers ** - The concept and technology for isolated, portable application packaging
-    * ** Docker ** - A platform that helps you execute container operations
+    * **Containers** - The concept and technology for isolated, portable application packaging
+    * **Docker** - A platform that helps you execute container operations
 
 Docker provides the tools and infrastructure to:
 
@@ -124,7 +124,7 @@ Docker provides the tools and infrastructure to:
 
 ## Containers vs Virtual Machines
 
-![containers vs virtual machines](img/04.png)
+![containers vs virtual machines](01_Docker_Fundamentals/img/04.png)
 
 To better understand the fundamental differences between containers and virtual machines, consider this real-world analogy.
 
@@ -139,6 +139,7 @@ To better understand the fundamental differences between containers and virtual 
 |-------------------|-----------------------------|-----------------------------------------------------------------------------|
 | Virtual Machines (Resource Intensive) | Separate House on Individual Land | - Each VM operates like a separate house on individual land <br> - One application per virtual machine (one family per house) <br> - Significant resource wastage due to underutilization <br> - Example: A house with 6 rooms for a 3-member family leaves 3 rooms unused |
 | Containers (Resource Efficient) | Apartments in a Shared Building   | - Multiple containers share the same infrastructure <br> - Like multiple families sharing one building on shared land <br> - Optimal resource utilization across all applications <br> - Containers scale up and down based on actual requirements |
+
 ### Key Architectural Differences
 
 | Aspect            | Virtual Machines                        | Containers                          |
@@ -149,3 +150,42 @@ To better understand the fundamental differences between containers and virtual 
 | Resource Usage    | Higher overhead, potential waste         | Minimal overhead, efficient usage   |
 
 
+| Virtual Machine Architecture | Container Architecture |
+|------------------------------|-------------------------|
+| **Components of VM Infrastructure** | **Components of Container Infrastructure** |
+| **Physical Layer:** <br> - Physical server in data center (public cloud) or personal desktop <br> - Shared hardware used by multiple organizations and users | **Physical Server and Host OS:** <br> - Same foundation as virtual machines <br> - Single operating system kernel shared across containers |
+| **Host Operating System:** <br> - Windows or Linux running on physical hardware <br> - Provides interface between hardware and virtualization layer | **Container Engine (Instead of Hypervisor):** <br> - Replaces hypervisor functionality for container management <br> - Examples: Docker Engine, containerd, CRI-O <br> - Enables multiple container instances on single OS kernel |
+| **Hypervisor:** <br> - Critical component enabling virtualization <br> - Allows multiple operating system instances to run concurrently <br> - Examples: VMware vSphere, Microsoft Hyper-V, KVM | **Container Instances:** <br> - Lightweight, isolated application environments <br> - Share host OS kernel but maintain process isolation <br> - Each container includes only necessary libraries and binaries |
+| **Guest Virtual Machines:** <br> - Individual VM instances running on the hypervisor <br> - Each VM contains its own complete operating system <br> - Users install binaries, libraries, and applications independently | |
+
+
+## Container vs Hypervisor Functionality
+
+![containers vs hypervisor](01_Docker_Fundamentals/img/05.png)
+
+| Hypervisor Function | Container Engine Function |
+|---------------------|---------------------------|
+| - Runs multiple virtual machines on single operating system <br> - Provides hardware abstraction layer <br> - Manages resource allocation between VMs | - Runs multiple container instances on single OS kernel <br> - Provides process isolation and resource management <br> - Manages container lifecycle and networking |
+
+
+### Container Advantages Over Virtual Machines
+
+* **Lightweight Operation:**
+    * No need for complete guest operating system
+    * Significantly smaller resource footprint
+    * Faster startup and shutdown times
+
+* **Enhanced Efficiency:**
+    * Shared OS kernel reduces resource duplication
+    * Better resource utilization across applications
+    * Lower infrastructure costs
+
+* **Superior Portability:**
+    * Consistent behavior across different host systems
+    * Easier migration between environments
+    * Simplified deployment processes
+
+* **Optimized Resource Management:**
+    * Dynamic scaling based on actual demand
+    * Automatic resource allocation and deallocation
+    * Minimal infrastructure waste

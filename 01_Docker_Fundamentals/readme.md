@@ -189,3 +189,52 @@ To better understand the fundamental differences between containers and virtual 
     * Dynamic scaling based on actual demand
     * Automatic resource allocation and deallocation
     * Minimal infrastructure waste
+
+
+## The Complete Docker Workflow Step-by-Step Process 
+
+![Docker workflow](../01_Docker_Fundamentals/img/6.png)
+
+How do we build our application, how do we ship it, how do we run our application with the help of a Docker container?
+
+1. Build Phase
+
+Docker file which is usually a set of instructions, has all commands which need to be run for building a given image. As we provide instructions to use this operating system as the base image (for example ubuntu), now install these dependencies on that and copy these files from my local system to that container and run this command to build the image and so on. Usually if you are working in an Enterprise usually your developers are responsible for creating the docker file along with the application code.
+
+Now we have Docker file, and we build that Docker file to create a Docker image. Dependencies, libraries, application code, operating system...etc. everything will be packaged in a image. This image is the shipable image, and we can ship this image from one environment to another, we can ship from one environment to multiple environments. You cannot ship containers directly from one environment to another. The way you ship it is, with the help of an image. You run the ```docker build``` command and Docker build will create the docker image from the docker file. 
+
+```
+docker build -t myapp:v1.0 .
+```
+
+```docker build``` - This is the main command that tells Docker to build an image
+```-t``` - The -t flag stands for "tag". It allows you to give your image a human-readable name.
+```myapp:v1.0``` - The name and the version (v1.0) tag of the image.
+```.``` - The dot (.) represents the current directory. This tells Docker where to find: The Dockerfile, Any files that need to be copied into the image, The "context" for building the image.
+
+2. Ship Phase
+
+Once you have the image ready, you cannot directly push the image to the dev environment or to the test environment or directly to the prod environment. You need an intermediate storage, you need a registry, to store those Docker images. 
+
+### Why do we need a registry? 
+
+It is for the same reason why you need a version control system, to store your source code. We use tools like GitHub, bit bucket, gitlab, a version control system to store our source code. We don't store our source code on on a Google drive or on a Dropbox, because that is not meant for this purpose. We want a repository, a storage, that will help us to track the changes that will help to make it easy for us to make the changes and easy to maintain. Same as the version control system for the source code, for storing the docker images we need to have a Docker registry and that will help us ship our images from one environment to another. Because these are the binaries these are not in the form of flat files. 
+
+```
+docker push myapp:v1.0
+```
+
+Docker image is uploaded to registry, Image becomes available for distribution and Multiple environments can access the same image.
+
+3. Deploy Phase
+
+With the help of ```docker pull``` command and the docker image can be pulled to different environments, (to Dev environment, to test environment, to prod environment). The binaries will then be pull to the desired environment and the ```docker run``` command will make sure that image (the package that we have which is called the docker image) will be converted into a running instance. Now our instance will be up and running our application will be running on the desired environment with the help of Docker image that we pulled. This is the basic workflow, how do you build an application how do you ship an application and how do you run your application when it comes to Containers.
+
+```
+docker pull myapp:v1.0
+docker run myapp:v1.0
+```
+
+Image is downloaded to target environment, Running instance (container) is created from the image, Application becomes operational.
+
+![Docker container creation workflow](../01_Docker_Fundamentals/img/7.png)

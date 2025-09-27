@@ -238,3 +238,13 @@ docker run myapp:v1.0
 Image is downloaded to target environment, Running instance (container) is created from the image, Application becomes operational.
 
 ![Docker container creation workflow](../01_Docker_Fundamentals/img/7.png)
+
+## Docker Architecture
+
+![Docker container creation workflow](../01_Docker_Fundamentals/img/8.png)
+
+Here we have our client machine with Docker installed, from which we’ll be running the docker commands. We usually store a ```Dockerfile``` in a Version Control System such as GitHub. A ```Dockerfile``` is simply a set of instructions. The default name of this file is ```Dockerfile``` (with an uppercase D). Although we can rename it if needed, following the default naming convention is considered best practice, and typically we keep it unchanged. Usually, we have one ```Dockerfile``` per application. When we run the ```docker build``` command, it is passed to the Docker daemon, which then builds the Docker image using the instructions in the Dockerfile. Once built, the image is stored locally.
+
+Let’s assume we are building an NGINX container. The image is first stored in the local storage of the Docker host the virtual machine where Docker is running. The next step requires intermediate storage, an image hosting registry, where we can store the image so it can be shipped to other environments. To do this, we run the ```docker push``` command. This command interacts with the Docker daemon, which then pushes the image from the local registry to a remote image registry. The image registries could be Docker Hub, JFrog Artifactory, Nexus Registry, etc. Once pushed, the Docker image is available in the registry for use in other environments.
+
+Now we want to deploy that image to an environment. For this, we run the ```docker pull``` command on the target environment. The pull command interacts with the Docker daemon, which then pulls the image from the registry to the environment. Once the image is pulled, we run the ```docker run``` command. This command is sent to the Docker daemon, which instructs the container runtime to spin up a container based on the image instructions. This is the entire architecture of a docker container. 
